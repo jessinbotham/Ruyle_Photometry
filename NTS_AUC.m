@@ -2,12 +2,12 @@
 AUC=[] % generates data table to store each trials AUC vals 
 time=-30:0.01:90 %trial time 
 
-%CHANGE TABLE NAME
+% CHANGE TABLE NAME
 x=zfent  % x=datatable to be analyzed with each trial in a separate rows. Change "datatable" to desired table for analysis
 name="SHEETNAME"%replace sheetname with document name for output
 
-%Time increments for AUC values to be calculated. Should be spaced with
-%even increments to avoid errors on final bar plot
+% Time increments for AUC values to be calculated. Should be spaced with
+% even increments to avoid errors on final bar plot
 AUC(:,1)=trapz(x(:,time(1,:) >-30 & time(1,:) < -15),2);
 AUC(:,2)=trapz(x(:,time(1,:) >-15 & time(1,:) < 0),2);
 AUC(:,3)=trapz(x(:,time(1,:) >0 & time(1,:) < 15),2);
@@ -39,7 +39,7 @@ saveas(graph,name,'png')
 
 CumAUC=cumtrapz(AUC(:,3:9),2);
 
-%CHANGE OUTPUT FILE NAME
+% CHANGE OUTPUT FILE NAME
 name2=[name,"NTS_AUC"];
 Cname= join(name2);
 writematrix(CumAUC,Cname,'FileType', 'Spreadsheet')
